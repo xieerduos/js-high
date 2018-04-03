@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跨页面传值 </title>
+</head>
+
+<body>
+    <script>
+        /**
+            eg:
+                location.href = "跨页面1-2.html?age=18&gender=man"
+            ----------------------------------
+
+            在下面页面接收：
+            1、location.search获取get请求的参数    获取到的数据，是以？开头的
+                var search = location.search;
+
+            2、如果还想要获取确定的数据，可以解析字符串
+                function parse(search) {
+                    // 从第二个字符串开始截取 ，获取到第二个开始后面所有的字符
+                    var str = search.substring(1);
+                    var t = {};
+                    var arr = str.split("&"); // 切割后返回一个数组
+                    for(var i = 0; i < arr.length; i ++ ) {
+                        // arr[0] === "age=18"  arr[1] === "gender=man"
+                        t[arr[i].split("=")[0]] = decodeURL(arr[i].split("=")[1]); 
+                    }
+                    // 也可以这么写
+                    // arr.forEach(function(item,index,arr){
+                    //    t[item.split("=")[0]] = decodeURL(item.split("=")[1]);  
+                    // });
+                    
+                    return t;
+                }
+
+            var D = parse(search);
+
+        
+        */
+
+        var search = location.search;
+
+        function parse(search) {
+            // 从第二个字符串开始截取 ，获取到第二个开始后面所有的字符
+            var str = search.substring(1);
+            var t = {};
+            var arr = str.split("&"); // 切割后返回一个数组
+            // for (var i = 0; i < arr.length; i++) {
+            //     // arr[0] === "age=18"  arr[1] === "gender=man"
+            //     t[arr[i].split("=")[0]] = decodeURI(arr[i].split("=")[1]); // 是URI 不是URL
+            //     // decodeURI() 函数可对 encodeURI() 函数编码过的 URI 进行解码。   
+            // }
+            // 也可以这么写
+            arr.forEach(function(item,index,arr){
+               t[item.split("=")[0]] = decodeURI(item.split("=")[1]);   // URI 
+                // decodeURI() 函数可对 encodeURI() 函数编码过的 URI 进行解码。   
+            });
+
+            return t;
+        }
+
+        var D = parse(search);
+        for(var k in D){
+            console.log(k, D[k]);
+        }
+        // 在地址栏  加上?user=lshai&pwd=333&age=19
+        // =>user  lshai
+        // =>pwd 333
+        // =>age 19
+    </script>
+</body>
+
+</html>

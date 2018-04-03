@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用html5的localStorage,或者sessionStorage存储对象类型</title>
+</head>
+<body>
+    <h1>使用localStorage和sessionStorage跨页面传值</h1>
+    <script>
+        // localStorage
+        // 遵循同源策略，可以跨域，但是可以跨页面传值。
+
+        // 语法:
+        // 1、存储值
+        //      1、localStorage.属性名 = 值
+        //      2、localStorage.setItem("属性名", 值); 
+        // 2、读取值
+        //      1、localStorage.属性名
+        //      2、localStorage.getItem("属性名");  
+        // 3、修改值
+        //      与存储值一样，重新向该属性当中存储新的值即可替换原值。
+
+        // 4、删除值
+        //      1、localStorage.removeItem("属性名");  // 删除指定项的值，对象还存在的。 
+        //      2、localStorage.clear(); // 全部删除
+
+
+        //  如果是跳转到另外一个页面，sessionStorage的值也会共享到跳转到的那一个页面。
+
+
+        
+
+        // localStorage和sessionStorage使用大致相同，他们的不同之处在于，localStorage是永久保存，而sessionStorage是会话存在
+
+        // 当会话结束，sessionStorage保存值也会被清空
+
+        var p2 = {name: "周瑜", age: 16};
+        var s2 = JSON.stringify(p2);
+
+        localStorage.setItem("p2", s2); // 以字符串格式存储信息
+
+        var s2_2 = localStorage.getItem("p2");  // 获取存储的信息，也是字符串格式
+
+        var p2_2 = JSON.parse(s2_2); // 将JSON数据反序列化为对象
+
+
+    
+    </script>
+</body>
+</html>
