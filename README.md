@@ -1,4 +1,4 @@
-#跨页面传值 部分 转载[https://blog.csdn.net/m0_37452696/article/details/78310238]
+#跨页面传值 学习笔记总结
 
 
 
@@ -24,13 +24,13 @@
 #跨页面传值有三种方式
 
 
-    >方法一：
+    方法一：
         1、通过URL传值
 
-    >方法二：
+    方法二：
         1、使用h5的localStorage或者sessionStorage存储对象类型
 
-    >方法三：
+    方法三：
         1、使用cookie保存
             1、原生cookie
             2、jQuerycookiejs插件
